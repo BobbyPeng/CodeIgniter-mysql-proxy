@@ -38,6 +38,12 @@ function load_db_proxy_setting($group_name, $is_write_query, $force_master = fal
     if($is_write_query || $force_master) {
         return isset($db[$db_master_group]) ? array($db_master_group => $db[$db_master_group]) : false;
     } else {
+        $CI = & get_instance();
+        foreach($_master_slave_relation[$db_master_group] as $val) {
+            if(isset($CI->{'conn_'.$val}) && is_resource($CI->{'conn_'.$val})) {
+                return array($val => $db[$val]);
+            }
+        }
         $rand_slave_id = array_rand($_master_slave_relation[$db_master_group]);
         $db_slave_group_name = $_master_slave_relation[$db_master_group][$rand_slave_id];
         return isset($db[$db_slave_group_name]) ? array($db_slave_group_name => $db[$db_slave_group_name]) : false;
