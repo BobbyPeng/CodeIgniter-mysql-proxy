@@ -71,7 +71,7 @@ class CI_DB_mysql_driver extends CI_DB {
 		}
 
 		$conn_id = @mysql_connect($this->hostname, $this->username, $this->password, TRUE);
-        echo date("Y-m-d H:i:s").' --> open host='.$this->hostname.';group_name='.$this->group_name.';conn='.$conn_id."\n";
+        //echo date("Y-m-d H:i:s").' --> open host='.$this->hostname.';group_name='.$this->group_name.';conn='.$conn_id."\n";
         return $conn_id;
 	}
 
@@ -772,7 +772,7 @@ class CI_DB_mysql_driver extends CI_DB {
 	 */
 	function _close($conn_id)
 	{
-        echo date("Y-m-d H:i:s").' --> close host='.$this->hostname.';group_name='.$this->group_name.';conn='.$conn_id."\n";
+        //echo date("Y-m-d H:i:s").' --> close host='.$this->hostname.';group_name='.$this->group_name.';conn='.$conn_id."\n";
 		@mysql_close($conn_id);
 	}
 
